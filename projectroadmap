@@ -2,11 +2,11 @@
 
 ## Sprint 1 – Setup & Exploration (Due 11/10)
 **Goals:** Set up project and gather references  
-- [ ] Turn in Exercise 6 and list project in Teams Spreadsheet  
-- [ ] Join KSU-IS GitHub organization  
-- [ ] Create GitHub repo under KSU-IS (public, add README, add MIT license)  
-- [ ] Edit and commit README.md with project description  
-- [ ] Explore one Python route-planning repo  
+- [x] Turn in Exercise 6 and list project in Teams Spreadsheet  
+- [x] Join KSU-IS GitHub organization  
+- [x] Create GitHub repo under KSU-IS (public, add README, add MIT license)  
+- [x] Edit and commit README.md with project description  
+- [x] Explore one Python route-planning repo  
   - Example: https://github.com/aram-ap/python-route-planner  
   - Read code and attempt to run it  
 - [ ] Update projectroadmap.md with notes/findings from reference repo  

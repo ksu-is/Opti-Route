@@ -1,44 +1,42 @@
 # Opti-Route Project Roadmap
 
 ## Sprint 1 – Setup & Exploration (Due 11/10)
-**Goals:** Establish the foundation for the project and gather references.  
-**Tasks:**
-- [ ] Create GitHub repository under KSU-IS organization and add `README.md`
-- [ ] Explore at least one existing Python route-planning repository for reference
-- [ ] Draft `projectroadmap.md` summarizing findings and inspirations
-- [ ] Complete Exercise 6 (short paper describing project idea, goals, and features)
-- [ ] Ensure commits show in GitHub
+**Goals:** Set up project and gather references  
+- [ ] Turn in Exercise 6 and list project in Teams Spreadsheet  
+- [ ] Join KSU-IS GitHub organization  
+- [ ] Create GitHub repo under KSU-IS (public, add README, add MIT license)  
+- [ ] Edit and commit README.md with project description  
+- [ ] Explore one Python route-planning repo  
+  - Example: https://github.com/aram-ap/python-route-planner  
+  - Read code and attempt to run it  
+- [ ] Update projectroadmap.md with notes/findings from reference repo  
 
-**Deliverables:**
-- GitHub repo with README and roadmap
-- Exercise 6 document
-
----
-
-## Sprint 2 – Core Functionality Implementation
-**Goals:** Develop basic route calculation and user input system.  
-**Tasks:**
-- [ ] Implement input page for origin and destination
-- [ ] Implement route type options: fastest, scenic, beginner-friendly, fuel-efficient
-- [ ] Write code to calculate and compare route options (using Google Maps API or sample dataset)
-- [ ] Test routes with at least two examples
-- [ ] Update `README.md` with progress and screenshots (if available)
-
-**Deliverables:**
-- Working prototype that calculates routes based on user preferences
-- Updated README.md
+**Deliverables:** GitHub repo with README & roadmap, Exercise 6 completed  
 
 ---
 
-## Sprint 3 – User Interface & Enhancements
-**Goals:** Add usability features and optional visualization.  
-**Tasks:**
-- [ ] Develop optional visual display of the route (map integration using `folium` or `matplotlib`)
-- [ ] Display estimated travel times and directions clearly
-- [ ] Ensure route calculations adapt to user preferences (safety, fun, efficiency)
-- [ ] Test full program with multiple scenarios and debug any issues
-- [ ] Finalize `README.md` with full description, goals achieved, and screenshots
+## Sprint 2 – Core Functionality
+**Goals:** Build main features and track progress  
+- [ ] Implement origin/destination input page  
+- [ ] Add route type options: fastest, scenic, beginner-friendly, fuel-efficient  
+- [ ] Code algorithm to calculate and compare routes  
+- [ ] Commit at least 6 meaningful code changes with descriptive messages  
+- [ ] Test multiple routes and debug issues  
+- [ ] Update roadmap with new tasks or mark completed items  
 
-**Deliverables:**
-- Fully functional **Opti-Route** program
-- Complete documentation with examples and screenshots
+**Deliverables:** Working prototype, visible GitHub commits, updated roadmap  
+
+---
+
+## Sprint 3 – Refinement & Presentation
+**Goals:** Refine project, add optional UI, and prepare presentation  
+- [ ] Add optional map visualization (e.g., folium or matplotlib)  
+- [ ] Display estimated travel times and directions clearly  
+- [ ] Ensure routes adapt to user preferences (safety, fun, efficiency)  
+- [ ] Continue committing meaningful code changes  
+- [ ] Finalize README.md with full description and screenshots  
+- [ ] Create and upload PowerPoint slide:  
+  - Project title, team members, tagline, optional screenshots/images  
+  - Upload to D2L and GitHub repo  
+
+**Deliverables:** Fully functional Opti-Route, final README & roadmap, PPT slide

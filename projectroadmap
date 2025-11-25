@@ -1,1 +1,44 @@
-TBD
+# Opti-Route Project Roadmap
+
+## Sprint 1 – Setup & Exploration (Due 11/10)
+**Goals:** Establish the foundation for the project and gather references.  
+**Tasks:**
+- [ ] Create GitHub repository under KSU-IS organization and add `README.md`
+- [ ] Explore at least one existing Python route-planning repository for reference
+- [ ] Draft `projectroadmap.md` summarizing findings and inspirations
+- [ ] Complete Exercise 6 (short paper describing project idea, goals, and features)
+- [ ] Ensure commits show in GitHub
+
+**Deliverables:**
+- GitHub repo with README and roadmap
+- Exercise 6 document
+
+---
+
+## Sprint 2 – Core Functionality Implementation
+**Goals:** Develop basic route calculation and user input system.  
+**Tasks:**
+- [ ] Implement input page for origin and destination
+- [ ] Implement route type options: fastest, scenic, beginner-friendly, fuel-efficient
+- [ ] Write code to calculate and compare route options (using Google Maps API or sample dataset)
+- [ ] Test routes with at least two examples
+- [ ] Update `README.md` with progress and screenshots (if available)
+
+**Deliverables:**
+- Working prototype that calculates routes based on user preferences
+- Updated README.md
+
+---
+
+## Sprint 3 – User Interface & Enhancements
+**Goals:** Add usability features and optional visualization.  
+**Tasks:**
+- [ ] Develop optional visual display of the route (map integration using `folium` or `matplotlib`)
+- [ ] Display estimated travel times and directions clearly
+- [ ] Ensure route calculations adapt to user preferences (safety, fun, efficiency)
+- [ ] Test full program with multiple scenarios and debug any issues
+- [ ] Finalize `README.md` with full description, goals achieved, and screenshots
+
+**Deliverables:**
+- Fully functional **Opti-Route** program
+- Complete documentation with examples and screenshots

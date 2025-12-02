@@ -1,4 +1,4 @@
-SmartRoute
+Opti-Route
 
 A Python application that customizes driving routes based on user preferences. Users can choose routes that are fastest, most scenic, beginner-friendly, or fuel-efficient. This program makes commuting and traveling more engaging, enjoyable, and tailored to individual needs.
 

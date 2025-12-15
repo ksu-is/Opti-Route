@@ -8,8 +8,15 @@
 - [x] Edit and commit README.md with project description  
 - [x] Explore one Python route-planning repo  
   - Example: https://github.com/aram-ap/python-route-planner  
-  - Read code and attempt to run it  
-- [ ] Update projectroadmap.md with notes/findings from reference repo  
+  - Read code and attempt to run it    
+- [x] Update projectroadmap.md with notes/findings from reference repo  
+    
+Notes / Findings from reference repo:
+      -The reference project used the Google Maps API to generate and plan routes for users
+      -Because it relies on Google Maps, it can support any location or area
+      -A major limitation is that the Google Maps API is not free, which affects long-term usability
+      -This led me to look for a free alternative, which is why I switched to OpenRouteService
+
 
 **Deliverables:** GitHub repo with README & roadmap, Exercise 6 completed  
 
@@ -31,10 +38,10 @@
 ## Sprint 3 – Refinement & Presentation
 **Goals:** Refine project, add optional UI, and prepare presentation  
 - [x] Add optional map visualization (e.g., folium or matplotlib)  
-- [ ] Display estimated travel times and directions clearly  
+- [x] Display estimated travel times and directions clearly  
 - [x] Ensure routes adapt to user preferences (safety, fun, efficiency)  
 - [x] Continue committing meaningful code changes  
-- [ ] Finalize README.md with full description and screenshots  
+- [x] Finalize README.md with full description
 - [x] Create and upload PowerPoint slide:  
   - Project title, team members, tagline, optional screenshots/images  
   - Upload to D2L and GitHub repo  

@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Route Result</title>
+    <style>body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0}header{padding:1rem;background:#f5f5f5}main{padding:1rem}</style>
+  </head>
+  <body>
+    <header>
+      <a href="/">← Back</a>
+      <h2>Route — {{ summary.mode }}</h2>
+      <div>Distance: <strong>{{ summary.distance_km }} km</strong> — Estimated time: <strong>{{ summary.time_min }} min</strong></div>
+    </header>
+    <main>
+      <div>
+        {{ map_html | safe }}
+      </div>
+    </main>
+  </body>
+</html>

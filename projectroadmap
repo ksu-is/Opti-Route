@@ -17,12 +17,12 @@
 
 ## Sprint 2 – Core Functionality
 **Goals:** Build main features and track progress  
-- [ ] Implement origin/destination input page  
-- [ ] Add route type options: fastest, scenic, beginner-friendly, fuel-efficient  
-- [ ] Code algorithm to calculate and compare routes  
-- [ ] Commit at least 6 meaningful code changes with descriptive messages  
-- [ ] Test multiple routes and debug issues  
-- [ ] Update roadmap with new tasks or mark completed items  
+- [x] Implement origin/destination input page  
+- [x] Add route type options: fastest, scenic, beginner-friendly, fuel-efficient  
+- [x] Code algorithm to calculate and compare routes  
+- [x] Commit at least 6 meaningful code changes with descriptive messages  
+- [x] Test multiple routes and debug issues  
+- [x] Update roadmap with new tasks or mark completed items  
 
 **Deliverables:** Working prototype, visible GitHub commits, updated roadmap  
 
@@ -30,12 +30,12 @@
 
 ## Sprint 3 – Refinement & Presentation
 **Goals:** Refine project, add optional UI, and prepare presentation  
-- [ ] Add optional map visualization (e.g., folium or matplotlib)  
+- [x] Add optional map visualization (e.g., folium or matplotlib)  
 - [ ] Display estimated travel times and directions clearly  
-- [ ] Ensure routes adapt to user preferences (safety, fun, efficiency)  
-- [ ] Continue committing meaningful code changes  
+- [x] Ensure routes adapt to user preferences (safety, fun, efficiency)  
+- [x] Continue committing meaningful code changes  
 - [ ] Finalize README.md with full description and screenshots  
-- [ ] Create and upload PowerPoint slide:  
+- [x] Create and upload PowerPoint slide:  
   - Project title, team members, tagline, optional screenshots/images  
   - Upload to D2L and GitHub repo  
 

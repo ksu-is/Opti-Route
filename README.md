@@ -1,61 +1,77 @@
-# Opti-Route — Minimal Python Route Planner
+🚀 Project Overview
 
-This repository contains a minimal Flask-based route planner that uses OpenStreetMap data (via `osmnx`) and `networkx` to compute routes. It offers four route styles: `fastest`, `scenic`, `beginner-friendly`, and `fuel-efficient` using simple heuristics.
+Opti-Route is a Python-based route planner that allows users to calculate driving routes between locations using OpenRouteService. The app supports different route preferences:
 
-Quick start
+Fastest — quickest driving route
 
-1. Create a virtual environment and install dependencies:
+Scenic — avoids highways, prefers scenic roads
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
+Beginner — beginner-friendly routes avoiding highways and tolls
+
+Fuel-efficient — shortest route to save fuel
+
+It also visualizes routes on an interactive map using Plotly.
+
+💻 Features
+
+Input addresses or latitude/longitude coordinates
+
+Geocodes addresses automatically
+
+Shows route on interactive map
+
+Supports multiple driving preferences
+
+Secure API key handling (stored in .env)
+
+Simple web interface using Flask
+
+🛠 Setup Instructions
+
+Clone the repository
+
+git clone <repo_url>
+cd Opti-Route/OptiRouteProject
+
+
+Create a .env file in the project root
+Add your OpenRouteService API key:
+
+ORS_API_KEY=your_api_key_here
+
+
+⚠️ The .env file is ignored by GitHub for security reasons. Your key is never shared publicly.
+
+Install dependencies
+
 pip install -r requirements.txt
-```
 
-2. Run the app:
 
-```bash
+Run the Flask app
+
 python app.py
-```
 
-3. Open http://localhost:5000 in a browser. Provide origin/destination (address or `lat,lon`) and pick a route type.
 
-Notes & Next steps
-- This is a minimal prototype. For production and better routing, consider using an external routing engine (OSRM / GraphHopper) or enrich OSM edge data (speeds, turn penalties, elevation).
-- The `scenic` and `beginner` heuristics are rough and can be tuned with real user feedback.
-Opti-Route
+Open your browser
+Navigate to http://127.0.0.1:5000
+ to start using Opti-Route.
 
-A Python application that customizes driving routes based on user preferences. Users can choose routes that are fastest, most scenic, beginner-friendly, or fuel-efficient. This program makes commuting and traveling more engaging, enjoyable, and tailored to individual needs.
+🗺 How to Use
 
-Programmer
-Denzel Osei
+Enter an origin (address or coordinates)
 
-Content
+Enter a destination (address or coordinates)
 
-Input page for origin and destination
+Select your preferred route type
 
-Options for route type: fastest, scenic, beginner-friendly, fuel-efficient
+Click Plan Route
 
-Visual display of the route (optional map integration)
+See your route visualized on the interactive map
 
-Estimated travel times and directions
+🔑 API Key Management
 
-Routes adapt to user preferences for safety, fun, or efficiency
+Uses python-dotenv to load the API key from .env
 
-Goals
+No key is stored in the repository
 
-Ensure the program calculates routes correctly
-
-Provide options tailored to different user types (older adults, new drivers, commuters)
-
-Create a user-friendly interface
-
-Test routes using Google Maps API
-
-Inspiration
-
-Python Route Planner by aram-ap
-
-Route Planner by Lucassuryana
-
-Route Optimization in Python - NeuronLab YouTube Tutorial
+Users must add their own API key in .env for the app to work

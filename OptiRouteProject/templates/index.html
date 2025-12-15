@@ -1,41 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Opti-Route — Planner</title>
-    <style>
-      body { font-family: Arial, sans-serif; margin: 2rem; }
-      label { display:block; margin-top: 0.5rem }
-      input[type=text] { width: 100%; padding: 0.5rem }
-      select { padding: 0.4rem }
-      .error { color: red }
-    </style>
-  </head>
-  <body>
-    <h1>Opti-Route — Python Route Planner</h1>
-    {% if error %}
-    <div class="error">{{ error }}</div>
-    {% endif %}
-    <form action="/route" method="post">
-      <label>Origin (address or "lat,lon")</label>
-      <input type="text" name="origin" placeholder="e.g. 37.422,-122.084" required>
+<head>
+    <title>OptiRoute</title>
+</head>
+<body>
+    <h2>OptiRoute</h2>
+<p>Enter either a full address (e.g., "San Francisco, CA") or decimal coordinates (e.g., "37.7749,-122.4194").</p>
+<form action="/route" method="post">
+  <label>Origin (address or "lat,lon")</label>
+  <input type="text" name="origin" 
+         placeholder="e.g. 1600 Amphitheatre Parkway, Mountain View or 37.422,-122.084" required>
 
-      <label>Destination (address or "lat,lon")</label>
-      <input type="text" name="destination" placeholder="e.g. 37.4419,-122.1430" required>
+  <label>Destination (address or "lat,lon")</label>
+  <input type="text" name="destination" 
+         placeholder="e.g. Palo Alto or 37.4419,-122.1430" required>
 
-      <label>Route type</label>
-      <select name="mode">
+  <label>Route type</label>
+  <select name="mode">
     <option value="fastest">Fastest</option>
     <option value="scenic">Scenic</option>
     <option value="beginner">Beginner-friendly</option>
     <option value="fuel">Fuel-efficient</option>
-</select>
+  </select>
 
-
-      <div style="margin-top:1rem">
-        <button type="submit">Plan Route</button>
-      </div>
-    </form>
-  </body>
+  <div style="margin-top:1rem">
+    <button type="submit">Plan Route</button>
+  </div>
+</form>
+</body>
 </html>
+
+

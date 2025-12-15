@@ -1,122 +1,159 @@
+> Note: The `.env` file is ignored by GitHub for security reasons.
+
+from dotenv import load_dotenv
+import os
+import pandas as pd
+import openrouteservice
+
+from flask import Flask, render_template, request
+
+import plotly.graph_objs as go
+import plotly.express as px
+
+# --------------------------------------------------
+# ENV + API SETUP
+# --------------------------------------------------
+
 from dotenv import load_dotenv
 import os
 
-# Get your OpenRouteService API key from the environment variable
-load_dotenv()
-api_key = os.getenv("ORS_API_KEY")
-client = openrouteservice.Client(key=api_key)
+load_dotenv()  # 👈 load .env file here
 
-from flask import Flask, render_template, request
+api_key = os.getenv("ORS_API_KEY")
+
 import pandas as pd
 import openrouteservice
-import plotly.graph_objs as go
-import plotly.express as px
-import time
+
+client = openrouteservice.Client(key=api_key)  # uses api_key, must be after loading
 
 
-import os  # <-- add this
-
-app = Flask(__name__)
-
-
-
+# --------------------------------------------------
+# FLASK APP
+# --------------------------------------------------
 
 app = Flask(__name__)
 
-def visualize_route(df,api_key):
-     # Assign colors to each ZoneID
+# --------------------------------------------------
+# ROUTE MODES
+# --------------------------------------------------
+
+ROUTE_MODES = {
+    "fastest": {
+        "profile": "driving-car",
+        "preference": "fastest"
+    },
+    "scenic": {
+        "profile": "driving-car",
+        "preference": "shortest",
+        "avoid_features": ["highways"]
+    },
+    "beginner": {
+        "profile": "driving-car",
+        "preference": "shortest",
+        "avoid_features": ["highways", "tollways"]
+    },
+    "fuel": {
+        "profile": "driving-car",
+        "preference": "shortest"
+    }
+}
+
+# --------------------------------------------------
+# VISUALIZATION FUNCTION
+# --------------------------------------------------
+
+def visualize_route(df):
     unique_zones = df['ZoneID'].unique()
-    zone_colors = {zone: px.colors.qualitative.Set1[i % len(px.colors.qualitative.Set1)]
-                   for i, zone in enumerate(unique_zones)}
 
-
-    def get_route(client, start, end):
-        return client.directions(
-            coordinates=[start, end],
-            profile='driving-car',  # or mode from user
-            format='geojson'
-        )
+    zone_colors = {
+        zone: px.colors.qualitative.Set1[i % len(px.colors.qualitative.Set1)]
+        for i, zone in enumerate(unique_zones)
+    }
 
     fig = go.Figure()
-
-    for i in range(len(df) - 1):
-        start = (df.iloc[i]['Longitude'], df.iloc[i]['Latitude'])
-        end = (df.iloc[i + 1]['Longitude'], df.iloc[i + 1]['Latitude'])
-        route = get_route(client, start, end)
-        coords = route['features'][0]['geometry']['coordinates']
-        lons, lats = zip(*coords)
-
-        color = zone_colors[df.iloc[i]['ZoneID']] if df.iloc[i]['ZoneID'] == df.iloc[i+1]['ZoneID'] else 'black'
-
-        fig.add_trace(go.Scattermapbox(
-            mode="lines",
-            lon=lons,
-            lat=lats,
-            line=dict(width=4, color=color),
-            showlegend=False
-        ))
 
     fig.add_trace(go.Scattermapbox(
         lat=df['Latitude'],
         lon=df['Longitude'],
-        mode='markers+text',
-        marker=dict(size=12, color=[zone_colors[z] for z in df['ZoneID']]),
-        text=df['Sequence'].astype(str),
-        textposition='top center'
+        mode='lines+markers',
+        line=dict(width=4),
+        marker=dict(size=8),
+        showlegend=False
     ))
 
     fig.update_layout(
-        mapbox=dict(style="open-street-map",
-                    center=dict(lon=df['Longitude'].mean(), lat=df['Latitude'].mean()),
-                    zoom=14),
-        margin={"r":0,"t":0,"l":0,"b":0}
+        mapbox=dict(
+            style="open-street-map",
+            center=dict(
+                lon=df['Longitude'].mean(),
+                lat=df['Latitude'].mean()
+            ),
+            zoom=13
+        ),
+        margin={"r": 0, "t": 0, "l": 0, "b": 0}
     )
 
-    # Save HTML so Flask can render it
-    filename = "templates/route_map.html"
-    fig.write_html(filename)
+    map_html = fig.to_html(full_html=False)
+    return render_template("route_map.html", map_html=map_html)
+
+       
+# --------------------------------------------------
+# ROUTES
+# --------------------------------------------------
+
+@app.route('/')
+def index():
+    return render_template("index.html")
+
 
 
 @app.route('/route', methods=['POST'])
 def route():
-    origin = request.form['origin']    # format: "lat,lon"
-    dest = request.form['destination'] # format: "lat,lon"
+    origin_input = request.form['origin']
+    dest_input = request.form['destination']
     mode = request.form['mode']
 
-    # Parse the input coordinates
-    origin_lat, origin_lon = map(float, origin.split(","))
-    dest_lat, dest_lon = map(float, dest.split(","))
+    # Use OpenRouteService geocode to get coordinates if input is an address
+    def get_coords(location):
+        try:
+            # Try splitting as decimal coordinates first
+            lat, lon = map(float, location.split(","))
+            return [lon, lat]  # ORS uses [lon, lat]
+        except:
+            # Treat as address
+            result = client.pelias_search(text=location)
+            coords = result['features'][0]['geometry']['coordinates']
+            return coords  # [lon, lat]
 
-    # Map your dropdown to OpenRouteService options
-    ors_options = {
-        "fastest": {"profile": "driving-car"},
-        "scenic": {"profile": "driving-car"},
-        "beginner": {"profile": "driving-car"},
-        "fuel": {"profile": "driving-car"}
-    }
-    profile = ors_options[mode]["profile"]
+    start = get_coords(origin_input)
+    end = get_coords(dest_input)
 
-    client = openrouteservice.Client(key=api_key)
+    config = ROUTE_MODES.get(mode, ROUTE_MODES["fastest"])
 
-    # Get the route from OpenRouteService
-    route = client.directions(
-        coordinates=[[origin_lon, origin_lat], [dest_lon, dest_lat]],
-        profile=profile,
+    route_data = client.directions(
+        coordinates=[start, end],
+        profile=config["profile"],
+        preference=config["preference"],
+        options={
+            "avoid_features": config.get("avoid_features", [])
+        },
         format="geojson"
     )
 
-    # Extract coordinates for plotting
-    coords = route['features'][0]['geometry']['coordinates']
+    coords = route_data['features'][0]['geometry']['coordinates']
     lons, lats = zip(*coords)
 
-    # Build DataFrame for visualize_route
     df = pd.DataFrame({
         "Sequence": list(range(len(coords))),
         "Latitude": lats,
         "Longitude": lons,
-        "ZoneID": ["Route"] * len(coords)  # Single zone for now
+        "ZoneID": ["Route"] * len(coords)
     })
 
-    visualize_route(df, api_key)
+    return visualize_route(df)
 
-    return render_template("route_map.html")
+
+# --------------------------------------------------
+
+if __name__ == "__main__":
+    app.run(debug=True)
